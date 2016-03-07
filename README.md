@@ -4,6 +4,8 @@ Python wrapper for LoRa payloads in supporting decryption.
 
 ## Usage
 
+`pip install python-lora`
+
 ```python
 from lora.payload import LoRoPayload
 

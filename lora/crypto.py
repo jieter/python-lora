@@ -10,7 +10,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
     that with each block of data.
 
     payload_hex: hex-encoded payload
-    sequence_counter: integer sequence counter (FCntUp)
+    sequence_counter: integer, sequence counter (FCntUp)
     key: 16-byte hex-encoded AES key. (i.e. AABBCCDDEEFFAABBCCDDEEFFAABBCCDD)
     dev_addr: 4-byte hex-encoded DevAddr (i.e. AABBCCDD)
 
