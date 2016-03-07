@@ -8,7 +8,7 @@ UP_LINK = 0
 DOWN_LINK = 1
 
 
-class LoraPayload(object):
+class LoRaPayload(object):
     '''Wrapper for an actility LoRa Payload'''
     def __init__(self, xmlstr):
         self.payload = etree.fromstring(xmlstr)
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
     print('\nInput file ', payload_filename)
     with open(payload_filename) as payload_file:
-        payload = LoraPayload(payload_file.read())
+        payload = LoRaPayload(payload_file.read())
         payload_hex = payload.payload_hex
         print('payload_hex from xml:', payload_hex)
         print('DevEUI from xml', payload.DevEUI)
