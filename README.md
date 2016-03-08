@@ -27,3 +27,14 @@ key = 'AABBCCDDEEFFAABBCCDDEEFFAABBCCDD'
 dev_addr = '00112233'
 plaintext = payload.decrypt(key, dev_addr)
 ```
+
+Or without the XML wrapper:
+```python
+>>> from lora.crypto import loramac_decrypt
+>>> payload = '11daf7a44d5e2bbe557176e9e6c8da'
+>>> sequence_counter = 2
+>>> key = 'AABBCCDDEEFFAABBCCDDEEFFAABBCCDD'
+>>> dev_addr = '00112233'
+>>> loramac_decrypt(payload, sequence_counter, key, dev_addr)
+[222, 59, 24, 8, 7, 155, 237, 158, 103, 125, 93, 34, 161, 204, 33]
+```
