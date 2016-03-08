@@ -3,7 +3,10 @@
 Python wrapper for LoRa payloads from Thingpark/Actility.
 It supports decryption of the payload.
 
-- Depends on [PyCrypto](https://pypi.python.org/pypi/pycrypto) and [lxml](https://pypi.python.org/pypi/lxml/3.5.0)
+- Depends on [PyCrypto] and [lxml]
+- Based on crypto code in [Lora-net/LoRaMac-node]
+- Tested with python 2.7
+- Available on [pypi]
 
 ## Usage
 
@@ -38,3 +41,8 @@ Or without the XML wrapper:
 >>> loramac_decrypt(payload, sequence_counter, key, dev_addr)
 [222, 59, 24, 8, 7, 155, 237, 158, 103, 125, 93, 34, 161, 204, 33]
 ```
+
+[PyCrypto]: https://pypi.python.org/pypi/pycrypto
+[lxml]: https://pypi.python.org/pypi/lxml/3.5.0
+[pypi]: https://pypi.python.org/pypi/python-lora
+[Lora-net/LoRaMac-node]: https://github.com/Lora-net/LoRaMac-node/blob/master/src/mac/LoRaMacCrypto.c#L108
