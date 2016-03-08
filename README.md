@@ -1,6 +1,9 @@
 # python-lora
 
-Python wrapper for LoRa payloads supporting decryption of the payload.
+Python wrapper for LoRa payloads from Thingpark/Actility.
+It supports decryption of the payload.
+
+- Depends on [PyCrypto](https://pypi.python.org/pypi/pycrypto) and [lxml](https://pypi.python.org/pypi/lxml/3.5.0)
 
 ## Usage
 
