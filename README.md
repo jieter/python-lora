@@ -1,13 +1,13 @@
 # python-lora
 
-Python wrapper for LoRa payloads in supporting decryption.
+Python wrapper for LoRa payloads supporting decryption of the payload.
 
 ## Usage
 
 `pip install python-lora`
 
 ```python
-from lora.payload import LoRoPayload
+from lora.payload import LoRaPayload
 
 xmlstr = '''<?xml version="1.0" encoding="UTF-8"?>
 <DevEUI_uplink xmlns="http://uri.actility.com/lora">
