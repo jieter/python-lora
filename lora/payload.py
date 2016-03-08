@@ -7,47 +7,32 @@ from .crypto import loramac_decrypt
 
 class LoRaPayload(object):
     '''Wrapper for an actility LoRa Payload'''
+    XMLNS = '{http://uri.actility.com/lora}'
+
     def __init__(self, xmlstr):
         self.payload = etree.fromstring(xmlstr)
 
-        if self.payload.tag != '{http://uri.actility.com/lora}DevEUI_uplink':
-            raise ValueError('LoraPayload expects an XML-string as argument')
+        if self.payload.tag != self.XMLNS + 'DevEUI_uplink':
+            raise ValueError(
+                'LoRaPayload expects an XML-string containing a '
+                'DevEUI_uplink tag as root element as argument'
+            )
 
     def __getattr__(self, name):
-        '''Get the (text) contents of an element in the DevEUI_uplink XML, allows'''
+        '''
+        Get the (text) contents of an element in the DevEUI_uplink XML, allows
+        accessing them as properties of the objects:
+
+        >>> payload = LoRaPayload('<?xml version="1.0" encoding="UTF-8"?>...')
+        >>> payload.payload_xml
+        '11daf7a44d5e2bbe557176e9e6c8da'
+        '''
         try:
-            return self.payload.find('{http://uri.actility.com/lora}' + name).text
+            return self.payload.find(self.XMLNS + name).text
         except AttributeError:
-            print('Could not find attribute with name: {}'.format(name))
+            print('Could not find tag with name: {}'.format(name))
 
     def decrypt(self, key, dev_addr):
         sequence_counter = int(self.FCntUp)
 
         return loramac_decrypt(self.payload_hex, sequence_counter, key, dev_addr)
-
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 4:
-        help_text = [
-            'Usage: python payload.py <filename> <key> <dev_addr>'
-            '<filename>: filename of an XML containing DevEUI_uplink',
-            '<key>: key as 16-byte hex-encoded string',
-            '<dev_addr>: DevAddr as 4-byte hex-encoded string'
-            '',
-            'python payload.py payload.xml AABBCCDDEEFFAABBCCDDEEFFAABBCCDD 00112233'
-        ]
-        print('\n'.join(help_text))
-        sys.exit()
-    _, payload_filename, key, dev_addr = sys.argv
-
-    print('\nInput file ', payload_filename)
-    with open(payload_filename) as payload_file:
-        payload = LoRaPayload(payload_file.read())
-        payload_hex = payload.payload_hex
-        print('payload_hex from xml:', payload_hex)
-        print('DevEUI from xml', payload.DevEUI)
-        print('sequence_counter (lsb first)', ''.join('{:02x}'.format(x) for x in payload.sequence_counter_list))
-
-        plaintext = payload.decrypt(key, dev_addr)
-
-        print('decrypted', ''.join('{:02x}'.format(x) for x in plaintext))

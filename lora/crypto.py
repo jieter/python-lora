@@ -50,7 +50,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         0x00,                             # 2 always 0x00
         0x00,                             # 3 always 0x00
         0x00,                             # 4 always 0x00
-        UP_LINK,                          # 5 directions, 0 for uplink, 1 for downlink
+        UP_LINK,                          # 5 dir, 0 for uplink, 1 for downlink
         dev_addr[3],                      # 6 devaddr, lsb
         dev_addr[2],                      # 7 devaddr
         dev_addr[1],                      # 8 devaddr

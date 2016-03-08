@@ -1,6 +1,7 @@
-from setuptools import setup
+#!/usr/bin/env python
 
 from lora import VERSION
+from setuptools import setup
 
 setup(
     name='python-lora',
