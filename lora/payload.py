@@ -33,6 +33,12 @@ class LoRaPayload(object):
             print('Could not find tag with name: {}'.format(name))
 
     def decrypt(self, key, dev_addr):
+        '''
+        Decrypt the actual payload in this LoraPayload.
+
+        key: 16-byte hex-encoded AES key. (i.e. AABBCCDDEEFFAABBCCDDEEFFAABBCCDD)
+        dev_addr: 4-byte hex-encoded DevAddr (i.e. AABBCCDD)
+        '''
         sequence_counter = int(self.FCntUp)
 
         return loramac_decrypt(self.payload_hex, sequence_counter, key, dev_addr)
