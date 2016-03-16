@@ -7,10 +7,14 @@ from setuptools import setup
 
 from lora import VERSION
 
+if sys.argv[-1] == 'publish':
+    os.system("python setup.py sdist upload")
+
 if sys.argv[-1] == 'tag':
-    os.system("git tag -a %s -m 'version %s'" % (VERSION, VERSION))
+    os.system("git tag -a v%s -m 'tagging v%s'" % (VERSION, VERSION))
     os.system("git push --tags")
     sys.exit()
+
 
 setup(
     name='python-lora',
