@@ -1,4 +1,9 @@
-from Crypto.Cipher import AES
+
+import sys
+from binascii import unhexlify
+
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 UP_LINK = 0
 DOWN_LINK = 1
@@ -19,9 +24,9 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
     This method is based on `void LoRaMacPayloadEncrypt()` in
     https://github.com/Lora-net/LoRaMac-node/blob/master/src/mac/LoRaMacCrypto.c#L108
     '''
-    key = key.decode('hex')
-    dev_addr = map(ord, dev_addr.decode('hex'))
-    buffer = map(ord, payload_hex.decode('hex'))
+    key = unhexlify(key)
+    dev_addr = unhexlify(dev_addr)
+    buffer = bytearray(unhexlify(payload_hex))
     size = len(buffer)
 
     bufferIndex = 0
@@ -31,7 +36,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
     # output buffer, initialize to input buffer size.
     encBuffer = [0x00] * size
 
-    aes = AES.new(key, AES.MODE_ECB)
+    cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=default_backend())
 
     def aes_encrypt_block(aBlock):
         '''
@@ -39,12 +44,19 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         aes.encrypt expects a string, so we convert the input to string and
         the return value to bytes again.
         '''
-        return map(ord, aes.encrypt(''.join(map(chr, aBlock))))
+        encryptor = cipher.encryptor()
+
+        if sys.version_info < (3, ):
+            plaintext = ''.join(map(chr, aBlock))
+        else:
+            plaintext = bytes(aBlock)
+
+        return bytearray(encryptor.update(plaintext) + encryptor.finalize())
 
     # for the definition of this block refer to
     # chapter 4.3.3.1 Encryption in LoRaWAN
     # in the LoRaWAN specification
-    aBlock = [
+    aBlock = bytearray([
         0x01,                             # 0 always 0x01
         0x00,                             # 1 always 0x00
         0x00,                             # 2 always 0x00
@@ -61,7 +73,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         (sequence_counter >> 24) & 0xff,  # 13 sequence counter (FCntUp) msb
         0x00,                             # 14 always 0x01
         0x00                              # 15 block counter
-    ]
+    ])
 
     # complete blocks
     while size >= 16:

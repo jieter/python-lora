@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from lora import VERSION
 from setuptools import setup
+
+from lora import VERSION
 
 setup(
     name='python-lora',
@@ -26,7 +27,6 @@ setup(
     packages=['lora'],
 
     install_requires=[
-        'lxml==3.5.0',
-        'pycrypto==2.6.1'
+        'cryptography==1.2.3'
     ],
 )

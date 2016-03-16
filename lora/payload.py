@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from lxml import etree
+from xml.etree import ElementTree
 
 from .crypto import loramac_decrypt
 
@@ -10,7 +10,7 @@ class LoRaPayload(object):
     XMLNS = '{http://uri.actility.com/lora}'
 
     def __init__(self, xmlstr):
-        self.payload = etree.fromstring(xmlstr)
+        self.payload = ElementTree.fromstring(xmlstr)
 
         if self.payload.tag != self.XMLNS + 'DevEUI_uplink':
             raise ValueError(
@@ -33,6 +33,12 @@ class LoRaPayload(object):
             print('Could not find tag with name: {}'.format(name))
 
     def decrypt(self, key, dev_addr):
+        '''
+        Decrypt the actual payload in this LoraPayload.
+
+        key: 16-byte hex-encoded AES key. (i.e. AABBCCDDEEFFAABBCCDDEEFFAABBCCDD)
+        dev_addr: 4-byte hex-encoded DevAddr (i.e. AABBCCDD)
+        '''
         sequence_counter = int(self.FCntUp)
 
         return loramac_decrypt(self.payload_hex, sequence_counter, key, dev_addr)
