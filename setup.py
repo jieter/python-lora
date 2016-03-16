@@ -1,8 +1,16 @@
 #!/usr/bin/env python
 
+import os
+import sys
+
 from setuptools import setup
 
 from lora import VERSION
+
+if sys.argv[-1] == 'tag':
+    os.system("git tag -a %s -m 'version %s'" % (VERSION, VERSION))
+    os.system("git push --tags")
+    sys.exit()
 
 setup(
     name='python-lora',
@@ -21,6 +29,9 @@ setup(
 
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 
     keywords='LoRa decrypt',
