@@ -19,8 +19,11 @@ class TestLoraPayload(unittest.TestCase):
         payload = LoRaPayload(read(xmlfilename))
         self.assertEquals(payload.DevLrrCnt, '1')
 
-    def test_lorapayloads(self):
+    def test_decrypting_payload(self):
         for device_path in glob.glob(os.path.join(FIXTURES_PATH, '*')):
+            if device_path.endswith('README.md'):
+                continue
+
             # infer dev_addr from fixture path
             dev_addr = os.path.split(device_path)[1]
             # key is in a file called key.hex

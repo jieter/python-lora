@@ -1,4 +1,5 @@
 
+import sys
 from binascii import unhexlify
 
 from cryptography.hazmat.backends import default_backend
@@ -43,8 +44,13 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         aes.encrypt expects a string, so we convert the input to string and
         the return value to bytes again.
         '''
-        plaintext = ''.join(map(chr, aBlock))
         encryptor = cipher.encryptor()
+
+        if sys.version_info < (3, ):
+            plaintext = ''.join(map(chr, aBlock))
+        else:
+            plaintext = bytes(aBlock)
+
         return bytearray(encryptor.update(plaintext) + encryptor.finalize())
 
     # for the definition of this block refer to
