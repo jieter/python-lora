@@ -4,10 +4,11 @@ import unittest
 
 from lora.payload import LoRaPayload
 
-FIXTURES_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'xmls')
+FIXTURES_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'fixtures')
 
 
 def read(filename):
+    '''Read a file and strip spaces'''
     with open(filename) as f:
         return f.read().strip()
 
