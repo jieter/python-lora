@@ -9,6 +9,7 @@ from lora import VERSION
 
 if sys.argv[-1] == 'publish':
     os.system("python setup.py sdist upload")
+    sys.exit()
 
 if sys.argv[-1] == 'tag':
     os.system("git tag -a v%s -m 'tagging v%s'" % (VERSION, VERSION))
