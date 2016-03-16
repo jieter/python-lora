@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from lxml import etree
+from xml.etree import ElementTree
 
 from .crypto import loramac_decrypt
 
@@ -10,7 +10,7 @@ class LoRaPayload(object):
     XMLNS = '{http://uri.actility.com/lora}'
 
     def __init__(self, xmlstr):
-        self.payload = etree.fromstring(xmlstr)
+        self.payload = ElementTree.fromstring(xmlstr)
 
         if self.payload.tag != self.XMLNS + 'DevEUI_uplink':
             raise ValueError(

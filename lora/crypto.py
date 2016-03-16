@@ -1,6 +1,8 @@
+
 from binascii import unhexlify
 
-from Crypto.Cipher import AES
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 UP_LINK = 0
 DOWN_LINK = 1
@@ -33,7 +35,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
     # output buffer, initialize to input buffer size.
     encBuffer = [0x00] * size
 
-    cipher = AES.new(key, AES.MODE_ECB)
+    cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=default_backend())
 
     def aes_encrypt_block(aBlock):
         '''
@@ -42,7 +44,8 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         the return value to bytes again.
         '''
         plaintext = ''.join(map(chr, aBlock))
-        return bytearray(cipher.encrypt(plaintext))
+        encryptor = cipher.encryptor()
+        return bytearray(encryptor.update(plaintext) + encryptor.finalize())
 
     # for the definition of this block refer to
     # chapter 4.3.3.1 Encryption in LoRaWAN

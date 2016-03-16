@@ -1,11 +1,10 @@
-
 import glob
 import os
 import unittest
 
 from lora.payload import LoRaPayload
 
-FIXTURES_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'xmls/*')
+FIXTURES_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'xmls')
 
 
 def read(filename):
@@ -14,9 +13,14 @@ def read(filename):
 
 
 class TestLoraPayload(unittest.TestCase):
+    def test_xmlparsing(self):
+        xmlfilename = os.path.join(FIXTURES_PATH, '000015E4', 'payload_1.xml')
+
+        payload = LoRaPayload(read(xmlfilename))
+        self.assertEquals(payload.DevLrrCnt, '1')
 
     def test_lorapayloads(self):
-        for device_path in glob.glob(FIXTURES_PATH):
+        for device_path in glob.glob(os.path.join(FIXTURES_PATH, '*')):
             # infer dev_addr from fixture path
             dev_addr = os.path.split(device_path)[1]
             # key is in a file called key.hex
