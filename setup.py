@@ -8,12 +8,12 @@ from setuptools import setup
 from lora import VERSION
 
 if sys.argv[-1] == 'publish':
-    os.system("python setup.py sdist upload")
+    os.system('python setup.py sdist upload')
     sys.exit()
 
 if sys.argv[-1] == 'tag':
-    os.system("git tag -a v%s -m 'tagging v%s'" % (VERSION, VERSION))
-    os.system("git push --tags")
+    os.system("git tag -a v{} -m 'tagging v{}'".format(VERSION, VERSION))
+    os.system('git push --tags')
     sys.exit()
 
 
@@ -27,7 +27,6 @@ setup(
     author_email='jieter@jieter.nl',
     license='MIT',
 
-    # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
