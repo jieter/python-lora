@@ -41,6 +41,8 @@ class TestLoraPayload(unittest.TestCase):
         self.assertEquals(payload.DevLrrCnt, '1')
         self.assertEquals(payload.FCntUp, '2')
 
+        self.assertEquals(payload.Lrr_location(), 'SRID=4326;POINT(4.36984 52.014877)')
+
     def test_decrypting_payload(self):
         '''Check the decrypted plaintext against a list of expected plaintexts'''
         for dev_addr, key, xml, expected in fixtures():

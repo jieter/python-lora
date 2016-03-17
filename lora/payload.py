@@ -4,6 +4,8 @@ from xml.etree import ElementTree
 
 from .crypto import loramac_decrypt
 
+WKT_POINT_FMT = 'SRID=4326;POINT({lng} {lat})'
+
 
 class LoRaPayload(object):
     '''Wrapper for an actility LoRa Payload'''
@@ -42,3 +44,9 @@ class LoRaPayload(object):
         sequence_counter = int(self.FCntUp)
 
         return loramac_decrypt(self.payload_hex, sequence_counter, key, dev_addr)
+
+    def Lrr_location(self):
+        '''
+        Return the location of the LRR (Wireless base station/Gateway)
+        '''
+        return WKT_POINT_FMT.format(lng=float(self.LrrLON), lat=float(self.LrrLAT))

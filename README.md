@@ -1,7 +1,7 @@
 # python-lora
 
 Python wrapper for LoRa payloads from Thingpark/Actility.
-It supports decryption of the payload.
+Allowing decryption of the payload.
 
 - Depends on [cryptography]
 - Based on crypto code in [Lora-net/LoRaMac-node]
