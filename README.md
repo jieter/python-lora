@@ -16,12 +16,9 @@ It supports decryption of the payload.
 from lora.payload import LoRaPayload
 
 xmlstr = '''<?xml version="1.0" encoding="UTF-8"?>
-<DevEUI_uplink xmlns="http://uri.actility.com/lora">
-[...]
-<FCntUp>2</FCntUp>
-[...]
-<payload_hex>[...]</payload_hex>
-[...]
+<DevEUI_uplink xmlns="http://uri.actility.com/lora">[...]
+<FCntUp>2</FCntUp>[...]
+<payload_hex>[...]</payload_hex>[...]
 </DevEUI_uplink>'''
 
 payload = LoRaPayload(xmlstr)
@@ -31,7 +28,7 @@ dev_addr = '00112233'
 plaintext = payload.decrypt(key, dev_addr)
 ```
 
-Or without the XML wrapper:
+You can also use `loramac_decrypt` without the XML wrapper:
 ```python
 >>> from lora.crypto import loramac_decrypt
 >>> payload = '11daf7a44d5e2bbe557176e9e6c8da'
