@@ -3,6 +3,8 @@ import sys
 
 from lora.payload import LoRaPayload
 
+# Import fixtures from a file containing
+#
 dev_addr = sys.argv[1] or '00100222'
 fixture_filename = '{}.txt'.format(dev_addr)
 
@@ -18,6 +20,12 @@ enc = 1
 plain = 1
 
 for item in fixtures.readlines():
+    item = item.strip()
+
+    # skip short lines, not containing xml and comments
+    if len(item) < 10 or item[0] == '#':
+        continue
+
     payload = LoRaPayload(item)
 
     if payload.FPort == '1':
