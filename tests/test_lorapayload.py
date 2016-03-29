@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import glob
 import os
 import unittest
@@ -23,13 +25,18 @@ def fixtures():
         key = read(os.path.join(device_path, 'key.hex'))
 
         # text all the files ending in xml in the path we just discovered
-        for fixture_filename in glob.glob(os.path.join(device_path, 'payload_*.xml')):
+        for fixture_filename in glob.glob(os.path.join(device_path, 'payload*.xml')):
+
+            if 'plaintext' in fixture_filename:
+                expected = None
+            else:
+                expected = read(fixture_filename.replace('.xml', '.txt'))
 
             yield (
                 dev_addr,
                 key,
                 read(fixture_filename),
-                read(fixture_filename.replace('.xml', '.txt'))
+                expected
             )
 
 
@@ -49,10 +56,24 @@ class TestLoraPayload(unittest.TestCase):
             payload = LoRaPayload(xml.encode('UTF-8'))
             plaintext_ints = payload.decrypt(key, dev_addr)
 
+            decrypted_hex = ''.join('{:02x}'.format(x) for x in plaintext_ints)
+
             self.assertEquals(
-                ''.join('{:02x}'.format(x) for x in plaintext_ints),
-                expected
+                len(decrypted_hex), len(payload.payload_hex),
+                'Decryption should not change length of hex string'
             )
+
+            if expected is None:
+                # plaintext is in filename, so skip checking the expected outcome
+                return
+
+            try:
+                self.assertEquals(decrypted_hex, expected)
+            except:
+                print('payload_hex: "{}", decrypted: "{}"'.format(
+                    payload.payload_hex,
+                    decrypted_hex
+                ))
 
 
 if __name__ == '__main__':

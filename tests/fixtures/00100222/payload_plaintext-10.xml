@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DevEUI_uplink xmlns="http://uri.actility.com/lora">
+<Time>2016-03-25T14:12:41.825+01:00</Time>
+<DevEUI>0059AC0000100222</DevEUI>
+<FPort>1</FPort>
+<FCntUp>99</FCntUp>
+<ADRbit>1</ADRbit>
+<MType>4</MType>
+<FCntDn>105</FCntDn>
+<payload_hex>0123456789abcdef4321</payload_hex>
+<mic_hex>0fde3254</mic_hex>
+<Lrcid>0059AC01</Lrcid>
+<LrrRSSI>-27.000000</LrrRSSI>
+<LrrSNR>8.250000</LrrSNR>
+<SpFact>7</SpFact>
+<SubBand>G1</SubBand>
+<Channel>LC2</Channel>
+<DevLrrCnt>1</DevLrrCnt>
+<Lrrid>08050042</Lrrid>
+<LrrLAT>52.070278</LrrLAT>
+<LrrLON>4.478838</LrrLON>
+<Lrrs>
+<Lrr>
+<Lrrid>08050042</Lrrid>
+<Chain>0</Chain>
+<LrrRSSI>-27.000000</LrrRSSI>
+<LrrSNR>8.250000</LrrSNR>
+<LrrESP>-27.605556</LrrESP>
+</Lrr>
+</Lrrs>
+<CustomerID>100006246</CustomerID>
+<CustomerData>{"alr":{"pro":"SMTC/LoRaMote","ver":"1"}}</CustomerData>
+<ModelCfg>0</ModelCfg>
+</DevEUI_uplink>
