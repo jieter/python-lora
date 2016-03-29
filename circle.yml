@@ -1,6 +1,6 @@
 
 test:
     pre:
-        - sudo apt-get update; sudo apt-get install python3.4-dev python3.5-dev
+        - sudo apt-get update; sudo apt-get install python3.4-dev
     override:
         - tox
