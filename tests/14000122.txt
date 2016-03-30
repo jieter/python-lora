@@ -1,3 +1,25 @@
+# XMLs provided by KPN on 2016-03-25
+# devAddr: 14000122
+# key: C6FB9E3C87AC393B43174EFA8F832195
+# transmissions on port 1 are plaintext, port 2 are encrypted.
+
+# Expected plaintexts:
+# 0B
+# 0A
+# 4321
+# 1234
+# 54321
+# 12345
+# 654321
+# 123456
+# 0123456789ABCDEF4321
+# 0123456789ABCDEF1234
+# 0123456789ABCDEF54321
+# 0123456789ABCDEF12345
+# 0123456789ABCDEF654321
+# 0123456789ABCDEF0123456789ABCDEF
+# 0123456789abcdef0123456789abcdef
+
 <?xml version="1.0" encoding="UTF-8"?><DevEUI_uplink xmlns="http://uri.actility.com/lora"><Time>2016-03-25T14:10:23.388+01:00</Time><DevEUI>0059AC0000100222</DevEUI><FPort>1</FPort><FCntUp>81</FCntUp><ADRbit>1</ADRbit><MType>4</MType><FCntDn>87</FCntDn><payload_hex>0b</payload_hex><mic_hex>6b9755a8</mic_hex><Lrcid>0059AC01</Lrcid><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>8.000000</LrrSNR><SpFact>7</SpFact><SubBand>G1</SubBand><Channel>LC3</Channel><DevLrrCnt>1</DevLrrCnt><Lrrid>08050042</Lrrid><LrrLAT>52.070278</LrrLAT><LrrLON>4.478838</LrrLON><Lrrs><Lrr><Lrrid>08050042</Lrrid><Chain>0</Chain><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>8.000000</LrrSNR><LrrESP>-28.638920</LrrESP></Lrr></Lrrs><CustomerID>100006246</CustomerID><CustomerData>{"alr":{"pro":"SMTC/LoRaMote","ver":"1"}}</CustomerData><ModelCfg>0</ModelCfg></DevEUI_uplink>
 <?xml version="1.0" encoding="UTF-8"?><DevEUI_uplink xmlns="http://uri.actility.com/lora"><Time>2016-03-25T14:10:29.588+01:00</Time><DevEUI>0059AC0000100222</DevEUI><FPort>2</FPort><FCntUp>82</FCntUp><ADRbit>1</ADRbit><MType>4</MType><FCntDn>88</FCntDn><payload_hex>c8</payload_hex><mic_hex>21f624d0</mic_hex><Lrcid>0059AC01</Lrcid><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>10.000000</LrrSNR><SpFact>7</SpFact><SubBand>G1</SubBand><Channel>LC1</Channel><DevLrrCnt>1</DevLrrCnt><Lrrid>08050042</Lrrid><LrrLAT>52.070278</LrrLAT><LrrLON>4.478838</LrrLON><Lrrs><Lrr><Lrrid>08050042</Lrrid><Chain>0</Chain><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>10.000000</LrrSNR><LrrESP>-28.413927</LrrESP></Lrr></Lrrs><CustomerID>100006246</CustomerID><CustomerData>{"alr":{"pro":"SMTC/LoRaMote","ver":"1"}}</CustomerData><ModelCfg>0</ModelCfg></DevEUI_uplink>
 <?xml version="1.0" encoding="UTF-8"?><DevEUI_uplink xmlns="http://uri.actility.com/lora"><Time>2016-03-25T14:10:37.682+01:00</Time><DevEUI>0059AC0000100222</DevEUI><FPort>1</FPort><FCntUp>83</FCntUp><ADRbit>1</ADRbit><MType>4</MType><FCntDn>89</FCntDn><payload_hex>0a</payload_hex><mic_hex>2426cec1</mic_hex><Lrcid>0059AC01</Lrcid><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>10.250000</LrrSNR><SpFact>7</SpFact><SubBand>G1</SubBand><Channel>LC2</Channel><DevLrrCnt>1</DevLrrCnt><Lrrid>08050042</Lrrid><LrrLAT>52.070278</LrrLAT><LrrLON>4.478838</LrrLON><Lrrs><Lrr><Lrrid>08050042</Lrrid><Chain>0</Chain><LrrRSSI>-28.000000</LrrRSSI><LrrSNR>10.250000</LrrSNR><LrrESP>-28.391785</LrrESP></Lrr></Lrrs><CustomerID>100006246</CustomerID><CustomerData>{"alr":{"pro":"SMTC/LoRaMote","ver":"1"}}</CustomerData><ModelCfg>0</ModelCfg></DevEUI_uplink>
