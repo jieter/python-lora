@@ -35,6 +35,7 @@ def fixtures():
             yield (
                 dev_addr,
                 key,
+                fixture_filename,
                 read(fixture_filename),
                 expected
             )
@@ -52,7 +53,7 @@ class TestLoraPayload(unittest.TestCase):
 
     def test_decrypting_payload(self):
         '''Check the decrypted plaintext against a list of expected plaintexts'''
-        for dev_addr, key, xml, expected in fixtures():
+        for dev_addr, key, fixture_filename, xml, expected in fixtures():
             payload = LoRaPayload(xml.encode('UTF-8'))
             plaintext_ints = payload.decrypt(key, dev_addr)
 
@@ -65,12 +66,13 @@ class TestLoraPayload(unittest.TestCase):
 
             if expected is None:
                 # plaintext is in filename, so skip checking the expected outcome
-                return
+                continue
 
             try:
                 self.assertEquals(decrypted_hex, expected)
             except:
-                print('payload_hex: "{}", decrypted: "{}"'.format(
+                print('fixture: {}, payload_hex: "{}", decrypted: "{}"'.format(
+                    fixture_filename,
                     payload.payload_hex,
                     decrypted_hex
                 ))

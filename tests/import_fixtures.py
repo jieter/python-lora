@@ -5,7 +5,7 @@ from lora.payload import LoRaPayload
 
 # Import fixtures from a file containing
 #
-dev_addr = sys.argv[1] or '00100222'
+dev_addr = sys.argv[1] or '14000122'
 fixture_filename = '{}.txt'.format(dev_addr)
 
 if not os.exists(fixture_filename):
