@@ -5,7 +5,7 @@ Allowing decryption of the payload.
 
 - Depends on [cryptography]
 - Based on crypto code in [Lora-net/LoRaMac-node]
-- Tested with python 2.7, 3.4 and 3.5
+- [Tested] with python 2.7, 3.4 and 3.5
 - Available on [pypi]
 
 ## Usage
@@ -42,3 +42,4 @@ You can also use `loramac_decrypt` without the XML wrapper:
 [cryptography]: https://cryptography.io/
 [pypi]: https://pypi.python.org/pypi/python-lora
 [Lora-net/LoRaMac-node]: https://github.com/Lora-net/LoRaMac-node/blob/master/src/mac/LoRaMacCrypto.c#L108
+[Tested]: https://circleci.com/gh/jieter/python-lora
