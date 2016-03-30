@@ -27,6 +27,7 @@ def fixtures():
         # text all the files ending in xml in the path we just discovered
         for fixture_filename in glob.glob(os.path.join(device_path, 'payload*.xml')):
 
+            fixture = '/'.join(fixture_filename.split('/')[-2:])
             if 'plaintext' in fixture_filename:
                 expected = None
             else:
@@ -35,7 +36,7 @@ def fixtures():
             yield (
                 dev_addr,
                 key,
-                fixture_filename,
+                fixture,
                 read(fixture_filename),
                 expected
             )
@@ -68,13 +69,14 @@ class TestLoraPayload(unittest.TestCase):
                 # plaintext is in filename, so skip checking the expected outcome
                 continue
 
-            try:
-                self.assertEquals(decrypted_hex, expected)
-            except:
-                print('fixture: {}, payload_hex: "{}", decrypted: "{}"'.format(
+            self.assertEquals(
+                decrypted_hex,
+                expected,
+                'Decrypted payload {} not as expected: \npayload_hex: {}\ndecrypted:   {}\nexpected:    {}'.format(
                     fixture_filename,
                     payload.payload_hex,
-                    decrypted_hex
+                    decrypted_hex,
+                    expected
                 ))
 
 
