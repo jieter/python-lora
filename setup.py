@@ -13,7 +13,7 @@ if sys.argv[-1] == 'publish':
 
 if sys.argv[-1] == 'tag':
     os.system("git tag -a v{} -m 'tagging v{}'".format(VERSION, VERSION))
-    os.system('git push --tags')
+    os.system('git push && git push --tags')
     sys.exit()
 
 
