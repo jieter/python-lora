@@ -1,4 +1,5 @@
 
+import random
 import sys
 from binascii import unhexlify
 
@@ -94,3 +95,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
             encBuffer[bufferIndex + i] = buffer[bufferIndex + i] ^ sBlock[i]
 
     return encBuffer
+
+
+def generate_appskey():
+    return ''.join('{:02X}'.format(x) for x in random.sample(range(255), 16))
