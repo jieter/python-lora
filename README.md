@@ -12,6 +12,8 @@ Allowing decryption of the payload.
 
 `pip install python-lora`
 
+[cryptography] requires [cffi] which in turn requires `libffi-dev` and `python-dev`.
+
 ```python
 from lora.payload import LoRaPayload
 
@@ -40,6 +42,7 @@ You can also use `loramac_decrypt` without the XML wrapper:
 ```
 
 [cryptography]: https://cryptography.io/
+[cffi]: https://cffi.readthedocs.org/en/latest/
 [pypi]: https://pypi.python.org/pypi/python-lora
 [Lora-net/LoRaMac-node]: https://github.com/Lora-net/LoRaMac-node/blob/master/src/mac/LoRaMacCrypto.c#L108
 [Tested]: https://circleci.com/gh/jieter/python-lora
