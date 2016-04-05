@@ -10,7 +10,15 @@ UP_LINK = 0
 DOWN_LINK = 1
 
 
-def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
+def to_bytes(s):
+    '''PY2/PY3 compatible way to convert to something cryptography understands'''
+    if sys.version_info < (3, ):
+        return ''.join(map(chr, s))
+    else:
+        return bytes(s)
+
+
+def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr, direction=UP_LINK):
     '''
     LoraMac decrypt, which is actually encrypting each 16-byte block and XORing
     that with each block of data.
@@ -19,6 +27,7 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
     sequence_counter: integer, sequence counter (FCntUp)
     key: 16-byte hex-encoded AES key. (i.e. AABBCCDDEEFFAABBCCDDEEFFAABBCCDD)
     dev_addr: 4-byte hex-encoded DevAddr (i.e. AABBCCDD)
+    direction: 0 for uplink packets, 1 for downlink packets
 
     returns an array of byte values.
 
@@ -47,23 +56,19 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr):
         '''
         encryptor = cipher.encryptor()
 
-        if sys.version_info < (3, ):
-            plaintext = ''.join(map(chr, aBlock))
-        else:
-            plaintext = bytes(aBlock)
+        return bytearray(
+            encryptor.update(to_bytes(aBlock)) + encryptor.finalize()
+        )
 
-        return bytearray(encryptor.update(plaintext) + encryptor.finalize())
-
-    # for the definition of this block refer to
-    # chapter 4.3.3.1 Encryption in LoRaWAN
-    # in the LoRaWAN specification
+    # For the exact definition of this block refer to
+    # 'chapter 4.3.3.1 Encryption in LoRaWAN' in the LoRaWAN specification
     aBlock = bytearray([
         0x01,                             # 0 always 0x01
         0x00,                             # 1 always 0x00
         0x00,                             # 2 always 0x00
         0x00,                             # 3 always 0x00
         0x00,                             # 4 always 0x00
-        UP_LINK,                          # 5 dir, 0 for uplink, 1 for downlink
+        direction,                        # 5 dir, 0 for uplink, 1 for downlink
         dev_addr[3],                      # 6 devaddr, lsb
         dev_addr[2],                      # 7 devaddr
         dev_addr[1],                      # 8 devaddr
