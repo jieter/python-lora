@@ -3,8 +3,9 @@
 import os
 import sys
 
-from lora import VERSION
 from setuptools import setup
+
+from lora import VERSION
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
@@ -41,6 +42,6 @@ setup(
     packages=['lora'],
 
     install_requires=[
-        'cryptography==1.3.1'
+        'cryptography==1.4'
     ],
 )

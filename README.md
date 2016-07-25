@@ -1,7 +1,6 @@
 # python-lora
 
-Python wrapper for LoRa payloads from Thingpark/Actility.
-Allowing decryption of the payload.
+Python wrapper for LoRa payloads from Thingpark/Actility, allowing decryption of the payload.
 
 - Depends on [cryptography]
 - Based on crypto code in [Lora-net/LoRaMac-node]
@@ -30,7 +29,7 @@ dev_addr = '00112233'
 plaintext = payload.decrypt(key, dev_addr)
 ```
 
-You can also use `loramac_decrypt` without the XML wrapper:
+You can also use `loramac_decrypt` without the XML wrapper to decode a hex-encoded `FRMPayload`:
 ```python
 >>> from lora.crypto import loramac_decrypt
 >>> payload = '11daf7a44d5e2bbe557176e9e6c8da'

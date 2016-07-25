@@ -20,10 +20,12 @@ def to_bytes(s):
 
 def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr, direction=UP_LINK):
     '''
-    LoraMac decrypt, which is actually encrypting each 16-byte block and XORing
-    that with each block of data.
+    LoraMac decrypt
 
-    payload_hex: hex-encoded payload
+    Which is actually encrypting a predefined 16-byte block (ref LoraWAN
+    specification 4.3.3.1) and XORing that with each block of data.
+
+    payload_hex: hex-encoded payload (FRMPayload)
     sequence_counter: integer, sequence counter (FCntUp)
     key: 16-byte hex-encoded AES key. (i.e. AABBCCDDEEFFAABBCCDDEEFFAABBCCDD)
     dev_addr: 4-byte hex-encoded DevAddr (i.e. AABBCCDD)
@@ -103,4 +105,5 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr, direction=UP_L
 
 
 def generate_appskey():
+    '''Generate a random secret key'''
     return ''.join('{:02X}'.format(x) for x in random.sample(range(255), 16))
