@@ -7,8 +7,11 @@ from setuptools import setup
 
 from lora import VERSION
 
+package_name = 'python-lora'
+
 if sys.argv[-1] == 'publish':
-    os.system('python setup.py sdist upload')
+    os.system('python setup.py sdist')
+    os.system('twine upload -r pypi dist/%s-%s.tar.gz' % (package_name, VERSION))
     sys.exit()
 
 if sys.argv[-1] == 'tag':
