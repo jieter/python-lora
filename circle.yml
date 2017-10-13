@@ -1,7 +1,7 @@
 dependencies:
   post:
     - pyenv install --list
-    - pyenv local 2.7.10 3.4.3 3.5.0 3.6.0
+    - pyenv local 2.7.10 3.4.3 3.5.0 3.6-dev
 test:
     pre:
         - sudo apt-get update -qq; sudo apt-get install python3.4-dev
