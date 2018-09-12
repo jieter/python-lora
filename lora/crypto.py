@@ -11,7 +11,9 @@ DOWN_LINK = 1
 
 
 def to_bytes(s):
-    """PY2/PY3 compatible way to convert to something cryptography understands"""
+    """
+    PY2/PY3 compatible way to convert to something cryptography understands
+    """
     if sys.version_info < (3,):
         return "".join(map(chr, s))
     else:

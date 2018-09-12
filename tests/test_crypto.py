@@ -12,9 +12,7 @@ class TestCrypto(unittest.TestCase):
         expected = "cafebabe"
 
         for sequence_counter, payload_hex in payloads:
-            plaintext_ints = loramac_decrypt(
-                payload_hex, sequence_counter, key, dev_addr
-            )
+            plaintext_ints = loramac_decrypt(payload_hex, sequence_counter, key, dev_addr)
             plaintext_hex = "".join("{:02x}".format(x) for x in plaintext_ints)
 
             self.assertEquals(plaintext_hex, expected)

@@ -15,7 +15,9 @@ if not os.exists(fixture_filename):
 fixtures = open(fixture_filename)
 
 filename_fmt = "fixtures/{}/payload_{}-{}.xml"
-LORA_XML_HEADER = '<?xml version="1.0" encoding="UTF-8"?><DevEUI_uplink xmlns="http://uri.actility.com/lora">'
+LORA_XML_HEADER = (
+    '<?xml version="1.0" encoding="UTF-8"?><DevEUI_uplink xmlns="http://uri.actility.com/lora">'
+)
 enc = 1
 plain = 1
 
