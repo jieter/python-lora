@@ -45,6 +45,6 @@ setup(
     packages=['lora'],
 
     install_requires=[
-        'cryptography==2.1.1'
+        'cryptography==2.3.1'
     ],
 )
