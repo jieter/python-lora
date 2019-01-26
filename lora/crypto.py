@@ -1,4 +1,3 @@
-
 import random
 import sys
 from binascii import unhexlify
@@ -76,10 +75,10 @@ def loramac_decrypt(payload_hex, sequence_counter, key, dev_addr, direction=UP_L
             dev_addr[2],  # 7 devaddr
             dev_addr[1],  # 8 devaddr
             dev_addr[0],  # 9 devaddr, msb
-            sequence_counter & 0xff,  # 10 sequence counter (FCntUp) lsb
-            (sequence_counter >> 8) & 0xff,  # 11 sequence counter
-            (sequence_counter >> 16) & 0xff,  # 12 sequence counter
-            (sequence_counter >> 24) & 0xff,  # 13 sequence counter (FCntUp) msb
+            sequence_counter & 0xFF,  # 10 sequence counter (FCntUp) lsb
+            (sequence_counter >> 8) & 0xFF,  # 11 sequence counter
+            (sequence_counter >> 16) & 0xFF,  # 12 sequence counter
+            (sequence_counter >> 24) & 0xFF,  # 13 sequence counter (FCntUp) msb
             0x00,  # 14 always 0x01
             0x00,  # 15 block counter
         ]
