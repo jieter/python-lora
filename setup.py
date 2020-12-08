@@ -41,5 +41,5 @@ setup(
     ],
     keywords="LoRa decrypt",
     packages=["lora"],
-    install_requires=["cryptography==2.5"],
+    install_requires=["cryptography==3.2"],
 )
