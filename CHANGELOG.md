@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.9 (2021-05-09)
+- Update cryptography dependency to 3.3.2
+
 ## 1.1.8 (2020-01-08)
  - Update cryptography dependency to 3.2
 
