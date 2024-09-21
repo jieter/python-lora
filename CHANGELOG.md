@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 (2024-09-21)
+- Update cryptography dependency to 43.0.1
+- Drop support for python 2.7, 3.6 and 3.7
+- Add support for python 3.9, 3.10, 3.11
+
 ## 1.1.9 (2021-05-09)
 - Update cryptography dependency to 3.3.2
 
