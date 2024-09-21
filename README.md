@@ -4,7 +4,7 @@ Python wrapper for LoRa payloads from Thingpark/Actility, allowing decryption of
 
 - Depends on [cryptography]
 - Based on crypto code in [Lora-net/LoRaMac-node]
-- Tested with python 2.7, 3.6, 3.7, 3.8, 3.9
+- Tested with python 3.8, 3.9, 3.10, 3.11
 - Available on [pypi]
 
 ## Usage
